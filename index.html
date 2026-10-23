@@ -399,7 +399,7 @@ footer{margin-top:90px;display:flex;justify-content:space-between;gap:20px;flex-
       <a id="mail" href="#"><span></span><span class="m">Email</span></a>
       <a id="li" href="#" target="_blank" rel="noopener"><span></span><span class="m">LinkedIn</span></a>
       <a id="be" href="#" target="_blank" rel="noopener"><span></span><span class="m">Behance</span></a>
-      <a id="resume" href="#" download="Saloni-Jain-Resume.pdf"><span>Resume</span><span class="m">Download ↓</span></a></div>
+      <a id="resume" href="#" target="_blank" rel="noopener"><span>Resume</span><span class="m">View ↗</span></a></div>
   </div>
   <footer class="m"><span>© 2026 Saloni Jain</span><span>Kickstand down. Horn OK Please.</span></footer>
 </section>
@@ -610,7 +610,7 @@ document.querySelectorAll('nav a:not(#aboutLink)').forEach(a=>a.addEventListener
 $('#mail span').textContent=CONTACT.email;$('#mail').href='mailto:'+CONTACT.email;
 const slug=u=>u.split('/').filter(Boolean).pop();
 $('#li span').textContent=slug(CONTACT.linkedin);$('#li').href=CONTACT.linkedin;$('#be span').textContent=slug(CONTACT.behance);$('#be').href=CONTACT.behance;
-if(CONTACT.resume){$('#resume').href=A(CONTACT.resume)}else{$('#resume').style.display='none'}
+if(CONTACT.resume){let u=A(CONTACT.resume);if(u.startsWith('data:')){const b=atob(u.split(',')[1]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);u=URL.createObjectURL(new Blob([a],{type:'application/pdf'}))}$('#resume').href=u}else{$('#resume').style.display='none'}
 const TOT=W.reduce((a,w)=>a+w.c,0);$('#tot').innerHTML=`${W.length} routes<br>${TOT} pieces`;$('#wp').textContent=`${W.length} routes, ${TOT} pieces. Pick a destination.`;
 
 function wheel(){let s='<circle r="94" stroke-width="3"/><circle r="99" stroke-width="1" opacity=".5"/><circle r="84" stroke-width="1" opacity=".6"/>';
